@@ -1,8 +1,8 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "container.migrate">
-  <!ENTITY author    "Dominik / Kreafact">
-  <!ENTITY version   "2026.06.14">
+  <!ENTITY author    "Dominik Kraemer">
+  <!ENTITY version   "2026.06.14k">
   <!ENTITY launch    "Settings/ContainerMigrate">
   <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
   <!ENTITY github    "KraemerD/Container-Migrate">
@@ -19,6 +19,39 @@
         support="https://github.com/&github;/issues">
 
   <CHANGES>
+###2026.06.14k
+- Fix: Tabellen-Text und -Hintergrund gegen aggressive Unraid-Themes abgesichert (war weiss auf weiss).
+
+###2026.06.14j
+- Neu: Modernes UI im Unraid-Stil mit Transfer-Header, Status-Badges und ueberarbeitetem Migrations-Plan.
+
+###2026.06.14i
+- Fix: SSH schreibt nicht mehr in known_hosts (behebt harmlose aber stoerende Operation-not-permitted-Warnung).
+
+###2026.06.14h
+- Fix: Alle Bind-Mounts werden uebertragen (behebt fehlende Daten bei abweichenden Ordnernamen wie UptimeKuma).
+
+###2026.06.14g
+- Fix: Ziel-Auswahl erscheint zuverlaessig (Timing-Bug zwischen Peer- und Container-Laden behoben).
+
+###2026.06.14f
+- Fix: Textfarben gegen helles Unraid-Theme abgesichert (Hosts waren weiss auf weiss).
+
+###2026.06.14e
+- Fix: Frontend nutzt GET, Backend durchgehend $_REQUEST (behebt leere POST-Bodies unter Unraid-nginx).
+
+###2026.06.14d
+- Fix: JSON-Encoding gegen ungueltiges UTF-8 abgesichert (behebt leere API-Antworten).
+
+###2026.06.14c
+- Fix: ContainerMigrate.page wiederhergestellt (war versehentlich leer -> leere Seite).
+
+###2026.06.14b
+- Fix: WebUI-Dateien auf reines ASCII umgestellt (behebt Encoding-Crash beim Laden).
+
+###2026.06.14a
+- Fix: Robustes Fehler-Handling, SSH-Setup gehärtet, Frontend zeigt echte Fehlermeldungen.
+
 ###2026.06.14
 - Erste Version: Peer-Verwaltung, Container-Discovery, Preview-Migration mit Einzelschritt-Bestätigung.
   </CHANGES>
@@ -36,7 +69,7 @@
        aus src/ kopiert; im Release zeigt URL auf das GitHub-Asset. -->
   <FILE Name="/boot/config/plugins/&name;/&name;-&version;.txz" Run="upgradepkg --install-new">
     <URL>https://github.com/&github;/releases/download/&version;/&name;-&version;.txz</URL>
-    <MD5>e1be0b316136eb5cd355faaf347d3fca</MD5>
+    <MD5>1b7315455ae439b70514d73e84e6cfa7</MD5>
   </FILE>
 
   <!-- Beim Entfernen: alles sauber löschen, Peers-Config optional behalten -->

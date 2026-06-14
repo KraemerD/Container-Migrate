@@ -1,0 +1,50 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+  <!ENTITY name      "container.migrate">
+  <!ENTITY author    "Dominik / Kreafact">
+  <!ENTITY version   "2026.06.14">
+  <!ENTITY launch    "Settings/ContainerMigrate">
+  <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
+  <!ENTITY github    "KraemerD/container-migrate">
+  <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/main/&name;.plg">
+]>
+
+<PLUGIN name="&name;"
+        author="&author;"
+        version="&version;"
+        launch="&launch;"
+        pluginURL="&pluginURL;"
+        min="6.12.0"
+        icon="exchange"
+        support="https://github.com/&github;/issues">
+
+  <CHANGES>
+###2026.06.14
+- Erste Version: Peer-Verwaltung, Container-Discovery, Preview-Migration mit Einzelschritt-Bestätigung.
+  </CHANGES>
+
+  <!-- Beim (Neu-)Installieren: altes Plugin-Verzeichnis aufräumen -->
+  <FILE Run="/bin/bash">
+    <INLINE>
+      rm -rf &plugdir;
+      mkdir -p &plugdir;
+      mkdir -p /boot/config/plugins/&name;
+    </INLINE>
+  </FILE>
+
+  <!-- Das txz-Package. Beim lokalen Test wird stattdessen direkt
+       aus src/ kopiert; im Release zeigt URL auf das GitHub-Asset. -->
+  <FILE Name="/boot/config/plugins/&name;/&name;-&version;.txz" Run="upgradepkg --install-new">
+    <URL>https://github.com/&github;/releases/download/&version;/&name;-&version;.txz</URL>
+  </FILE>
+
+  <!-- Beim Entfernen: alles sauber löschen, Peers-Config optional behalten -->
+  <FILE Run="/bin/bash" Method="remove">
+    <INLINE>
+      removepkg &name; 2>/dev/null
+      rm -rf &plugdir;
+      echo "container.migrate entfernt. (Server-Liste unter /boot/config/plugins/&name; bleibt erhalten.)"
+    </INLINE>
+  </FILE>
+
+</PLUGIN>

@@ -5,7 +5,7 @@
   <!ENTITY version   "2026.06.14">
   <!ENTITY launch    "Settings/ContainerMigrate">
   <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
-  <!ENTITY github    "KraemerD/container-migrate">
+  <!ENTITY github    "KraemerD/Container-Migrate">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/main/&name;.plg">
 ]>
 
@@ -36,6 +36,7 @@
        aus src/ kopiert; im Release zeigt URL auf das GitHub-Asset. -->
   <FILE Name="/boot/config/plugins/&name;/&name;-&version;.txz" Run="upgradepkg --install-new">
     <URL>https://github.com/&github;/releases/download/&version;/&name;-&version;.txz</URL>
+    <MD5>e1be0b316136eb5cd355faaf347d3fca</MD5>
   </FILE>
 
   <!-- Beim Entfernen: alles sauber löschen, Peers-Config optional behalten -->
